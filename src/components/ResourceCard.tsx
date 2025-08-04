@@ -23,20 +23,48 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
     return tagColors[index % tagColors.length]
   }
 
+  // Procesar tags - manejar tanto arrays como strings JSON
+  const processTags = (tags: any): string[] => {
+    if (!tags) return []
+    
+    // Si ya es un array, devolverlo
+    if (Array.isArray(tags)) {
+      return tags
+    }
+    
+    // Si es un string JSON, parsearlo
+    if (typeof tags === 'string') {
+      try {
+        const parsed = JSON.parse(tags)
+        return Array.isArray(parsed) ? parsed : []
+      } catch {
+        // Si no es JSON válido, dividir por comas
+        return tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
+      }
+    }
+    
+    return []
+  }
+
+  const processedTags = processTags(resource.tags)
+
+  console.log('🏷️ Tags originales:', resource.tags)
+  console.log('🏷️ Tags procesados:', processedTags)
+
   return (
     <a 
       href={resource.url} 
       target="_blank" 
       rel="noopener noreferrer"
-      className="bg-white/10 rounded-lg p-4 border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all cursor-pointer block"
+      className="bg-white/10 rounded-lg p-4 border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all cursor-pointer h-full flex flex-col"
     >
       <h3 className="font-semibold mb-2 text-lg">{resource.title}</h3>
-      <p className="text-sm text-gray-300 mb-3 line-clamp-2">
+      <p className="text-sm text-gray-300 mb-3 flex-grow">
         {resource.description}
       </p>
-      {resource.tags && resource.tags.length > 0 && (
-        <div className="flex gap-1 flex-wrap">
-          {resource.tags.map((tag, index) => (
+      {processedTags.length > 0 && (
+        <div className="flex gap-1 flex-wrap mt-auto">
+          {processedTags.map((tag, index) => (
             <span 
               key={index}
               className={`${getTagColor(index)} px-2 py-1 rounded text-xs`}
