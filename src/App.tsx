@@ -1,15 +1,24 @@
 import './App.css'
 import Header from './components/Header'
+import Filters from './components/Filters'
+import Resources from './components/Resources'
+import AddItem from './components/AddItem'
 
 function App() {
   return (
-    <div className="App bg-red-300">
+    <>
       <Header />
-      <main>
-        <h2 className="text-xl font-bold">Welcome to My App</h2>
-        <p className="mt-4">This is a simple app using React and Zustand.</p>
+      <main className="min-h-screen">
+        <Filters />
+        <div className="max-w-7xl mx-auto p-4">
+          {/* Contenido principal */}
+          <Resources />
+        </div>
       </main>
-    </div>
+      
+      {/* Modal de AddItem */}
+      <AddItem />
+    </>
   )
 }
 
