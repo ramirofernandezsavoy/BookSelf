@@ -45,6 +45,48 @@ export const createResource = async (resource: {
   return data
 }
 
+// Actualizar un recurso existente
+export const updateResource = async (id: number, resource: {
+  title: string
+  description: string
+  url: string
+  tags: string[]
+}): Promise<Resource> => {
+  console.log('✏️ Actualizando recurso:', id, resource)
+  
+  const { data, error } = await supabase
+    .from('resources')
+    .update(resource)
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) {
+    console.error('❌ Error updating resource in Supabase:', error)
+    throw error
+  }
+
+  console.log('✅ Recurso actualizado exitosamente:', data)
+  return data
+}
+
+// Eliminar un recurso
+export const deleteResource = async (id: number): Promise<void> => {
+  console.log('🗑️ Eliminando recurso:', id)
+  
+  const { error } = await supabase
+    .from('resources')
+    .delete()
+    .eq('id', id)
+
+  if (error) {
+    console.error('❌ Error deleting resource in Supabase:', error)
+    throw error
+  }
+
+  console.log('✅ Recurso eliminado exitosamente')
+}
+
 // Buscar recursos por texto
 export const searchResources = async (query: string): Promise<Resource[]> => {
   const { data, error } = await supabase

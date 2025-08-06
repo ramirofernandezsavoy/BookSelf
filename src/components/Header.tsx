@@ -7,12 +7,12 @@ export default function Header() {
           <ul className="flex space-x-4">
             <li>
               <a href="#section1" className="text-white hover:underline">
-                Usuario
+                User
               </a>
             </li>
             <li>
               <a href="#section2" className="text-white hover:underline">
-                Configuracion
+                Settings
               </a>
             </li>
           </ul>
