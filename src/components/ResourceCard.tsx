@@ -38,7 +38,6 @@ export default function ResourceCard({ resource, onEdit }: ResourceCardProps) {
   const handleEdit = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    console.log('✏️ Editando recurso:', resource.id)
     onEdit(resource)
   }
 
@@ -53,18 +52,13 @@ export default function ResourceCard({ resource, onEdit }: ResourceCardProps) {
     
     if (confirmDelete) {
       try {
-        console.log('🗑️ Eliminando recurso:', resource.id)
         await deleteResource(resource.id)
-        console.log('✅ Recurso eliminado exitosamente')
       } catch (error) {
-        console.error('❌ Error al eliminar recurso:', error)
+        console.error('Error al eliminar recurso:', error)
         alert('Error al eliminar el recurso. Por favor intenta de nuevo.')
       }
     }
   }
-
-  console.log('🏷️ Tags originales:', resource.tags)
-  console.log('🏷️ Tags procesados:', processedTags)
 
   return (
     <div className="bg-black/25 backdrop-blur-md rounded-lg p-3 border border-gray-400/25 hover:bg-black/35 hover:border-gray-400/40 hover:backdrop-blur-lg transition-all duration-300 h-full flex flex-col relative group shadow-md hover:shadow-lg">

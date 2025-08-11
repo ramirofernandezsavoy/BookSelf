@@ -3,13 +3,10 @@ import type { Resource } from '../stores/useStore'
 
 // Obtener todos los recursos
 export const getResources = async (): Promise<Resource[]> => {
-  console.log('🗄️ Llamando a Supabase para obtener recursos...')
-  
   // Obtener el usuario actual
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
-    console.log('❌ Usuario no autenticado')
     return []
   }
   
@@ -24,9 +21,6 @@ export const getResources = async (): Promise<Resource[]> => {
     throw error
   }
 
-  console.log('📥 Respuesta cruda de Supabase:', data)
-  console.log('📋 Número de recursos encontrados:', data?.length || 0)
-
   return data || []
 }
 
@@ -37,8 +31,6 @@ export const createResource = async (resource: {
   url: string
   tags: string[]
 }): Promise<Resource> => {
-  console.log('➕ Creando nuevo recurso:', resource)
-  
   // Obtener el usuario actual
   const { data: { user } } = await supabase.auth.getUser()
   
@@ -62,7 +54,6 @@ export const createResource = async (resource: {
     throw error
   }
 
-  console.log('✅ Recurso creado exitosamente:', data)
   return data
 }
 
@@ -73,8 +64,6 @@ export const updateResource = async (id: number, resource: {
   url: string
   tags: string[]
 }): Promise<Resource> => {
-  console.log('✏️ Actualizando recurso:', id, resource)
-  
   const { data, error } = await supabase
     .from('links')
     .update(resource)
@@ -87,14 +76,11 @@ export const updateResource = async (id: number, resource: {
     throw error
   }
 
-  console.log('✅ Recurso actualizado exitosamente:', data)
   return data
 }
 
 // Eliminar un recurso
 export const deleteResource = async (id: number): Promise<void> => {
-  console.log('🗑️ Eliminando recurso:', id)
-  
   const { error } = await supabase
     .from('links')
     .delete()
@@ -104,8 +90,6 @@ export const deleteResource = async (id: number): Promise<void> => {
     console.error('❌ Error deleting resource in Supabase:', error)
     throw error
   }
-
-  console.log('✅ Recurso eliminado exitosamente')
 }
 
 // Buscar recursos por texto

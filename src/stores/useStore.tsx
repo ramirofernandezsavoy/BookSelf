@@ -45,33 +45,27 @@ const useStore = create<StoreState>((set, get) => ({
   selectedTag: null,
   editingResource: null,
   setResources: (resources: Resource[]) => {
-    console.log('📦 Estableciendo recursos:', resources.length)
     set({ resources })
     // Actualizar tags disponibles después de establecer los recursos
     setTimeout(() => {
       const tags = get().getUniqueTags()
-      console.log('🔄 Actualizando availableTags:', tags)
       set({ availableTags: tags })
     }, 0)
   },
   
   fetchResources: async () => {
     try {
-      console.log('🔄 Iniciando fetchResources...')
       set({ loading: true })
       const resources = await getResources()
-      console.log('✅ Recursos obtenidos de Supabase:', resources)
       set({ resources })
       
       // Actualizar tags después de obtener recursos
       const tags = get().getUniqueTags()
-      console.log('🏷️ Tags extraídos en fetchResources:', tags)
       set({ availableTags: tags })
     } catch (error) {
       console.error('❌ Error fetching resources:', error)
     } finally {
       set({ loading: false })
-      console.log('🏁 fetchResources completado')
     }
   },
   
@@ -113,7 +107,6 @@ const useStore = create<StoreState>((set, get) => ({
   
   searchResources: async (query: string) => {
     try {
-      console.log('🔍 Buscando recursos con query:', query)
       set({ loading: true, searchQuery: query })
       
       if (query.trim() === '') {
@@ -140,7 +133,6 @@ const useStore = create<StoreState>((set, get) => ({
 
   getUniqueTags: () => {
     const { resources } = get()
-    console.log('🏷️ Recursos para extraer tags:', resources)
     const allTags = new Set<string>()
     
     // Usar la misma lógica de procesamiento que ResourceCard
@@ -167,26 +159,21 @@ const useStore = create<StoreState>((set, get) => ({
     }
     
     resources.forEach(resource => {
-      console.log('🔍 Procesando recurso:', resource.title, 'Tags raw:', resource.tags)
       const processedTags = processTags(resource.tags)
-      console.log('🔍 Tags procesados:', processedTags)
       
       processedTags.forEach(tag => {
         if (typeof tag === 'string' && tag.trim()) {
-          console.log('✅ Tag válido encontrado:', tag.trim())
           allTags.add(tag.trim())
         }
       })
     })
     
     const uniqueTags = Array.from(allTags).sort()
-    console.log('🎯 Tags únicos extraídos:', uniqueTags)
     return uniqueTags
   },
 
   filterByTag: async (tag: string | null) => {
     try {
-      console.log('🏷️ Filtrando por tag:', tag)
       set({ loading: true, selectedTag: tag })
       
       if (!tag) {

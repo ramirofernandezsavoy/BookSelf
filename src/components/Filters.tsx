@@ -10,18 +10,13 @@ export default function Filters() {
   // Forzar actualización de tags cuando cambian los recursos
   useEffect(() => {
     if (resources.length > 0) {
-      const tags = getUniqueTags()
-      console.log('🔄 Actualizando tags manualmente:', tags)
+      getUniqueTags()
     }
   }, [resources, getUniqueTags])
-
-  console.log('🎨 Tags disponibles en Filters:', availableTags)
-  console.log('📋 Recursos disponibles:', resources.length)
 
   // Debounce search - buscar 500ms después de que el usuario pare de escribir
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log('🔍 Ejecutando búsqueda con:', localQuery)
       searchResources(localQuery)
     }, 500)
 
@@ -30,24 +25,22 @@ export default function Filters() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
-    console.log('📝 Input cambió a:', value)
     setLocalQuery(value)
   }
 
   const handleTagFilter = (tag: string | null) => {
-    console.log('🏷️ Filtro de tag seleccionado:', tag)
     filterByTag(tag)
   }
 
   return (
-    <section className="text-white max-w-7xl mx-auto">
+    <section className="text-white max-w-7xl mx-auto px-4">
       <div className="p-4 mb-6">
         <input 
           type="text" 
           value={localQuery}
           onChange={handleInputChange}
-          className="w-full py-2 px-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/20 text-sm text-white placeholder-gray-400 mb-3 focus:outline-none focus:border-white/40 focus:bg-black/30 transition-all" 
-          placeholder="Buscar títulos y descripciones..."
+          className="w-full py-2 px-3 rounded-lg bg-black/20 backdrop-blur-sm border border-cyan-400/20 text-sm text-white placeholder-gray-400 mb-3 focus:outline-none focus:border-cyan-400/40 focus:bg-black/30 transition-all" 
+          placeholder="Search titles and descriptions..."
         />
         <div className="flex space-x-3 justify-start flex-wrap gap-y-3">
           <button 
@@ -58,7 +51,7 @@ export default function Filters() {
                 : 'bg-blue-100 text-blue-600 hover:opacity-80'
             }`}
           >
-            Todos los Elementos
+            All Resources
           </button>
           {availableTags.map((tag) => (
             <button 
