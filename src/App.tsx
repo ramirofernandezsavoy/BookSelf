@@ -158,14 +158,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Background animado con esferas - usando colores sólidos más visibles para debug */}
+    <div 
+      className="min-h-screen relative overflow-hidden transition-colors duration-500"
+      style={{ backgroundColor: 'var(--bg-primary)' }}
+    >
+      {/* Background animado con esferas - usando variables CSS para adaptarse al tema */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Esfera 1 - Violeta */}
         <div 
-          className="absolute w-96 h-96 rounded-full blur-xl"
+          className="absolute w-96 h-96 rounded-full blur-xl transition-opacity duration-500"
           style={{
-            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 100%)',
+            background: `radial-gradient(circle, var(--sphere-1) 0%, transparent 70%)`,
             top: '20%',
             left: '10%',
             animation: 'float-1 20s ease-in-out infinite'
@@ -174,9 +177,9 @@ function App() {
         
         {/* Esfera 2 - Azul */}
         <div 
-          className="absolute w-80 h-80 rounded-full blur-xl"
+          className="absolute w-80 h-80 rounded-full blur-xl transition-opacity duration-500"
           style={{
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(14, 165, 233, 0.2) 50%, transparent 100%)',
+            background: `radial-gradient(circle, var(--sphere-2) 0%, transparent 70%)`,
             top: '40%',
             right: '20%',
             animation: 'float-2 25s ease-in-out infinite reverse'
@@ -185,9 +188,9 @@ function App() {
         
         {/* Esfera 3 - Rosa */}
         <div 
-          className="absolute w-72 h-72 rounded-full blur-xl"
+          className="absolute w-72 h-72 rounded-full blur-xl transition-opacity duration-500"
           style={{
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(251, 113, 133, 0.2) 50%, transparent 100%)',
+            background: `radial-gradient(circle, var(--sphere-3) 0%, transparent 70%)`,
             bottom: '20%',
             left: '50%',
             animation: 'float-3 30s ease-in-out infinite'
@@ -200,15 +203,25 @@ function App() {
         {/* Header de usuario autenticado */}
         <div className="p-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <h1 className="text-4xl font-bold text-white">BookSelf</h1>
-            <div className="text-white flex flex-col gap-2">
+            <h1 
+              className="text-4xl font-bold transition-colors duration-300"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              BookSelf
+            </h1>
+            <div className="flex flex-col gap-2">
               <button
                 onClick={handleSignOut}
                 className="p-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm cursor-pointer"
               >
                 Cerrar Sesión
               </button>
-              <span className="font-medium text-sm">{user?.email}</span>
+              <span 
+                className="font-medium text-sm transition-colors duration-300"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {user?.email}
+              </span>
             </div>
           </div>
         </div>
@@ -222,12 +235,26 @@ function App() {
         <section className="max-w-7xl mx-auto px-4 pb-6">
           <div className="p-4 mb-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="font-medium text-white">
+              <h2 
+                className="font-medium transition-colors duration-300"
+                style={{ color: 'var(--text-primary)' }}
+              >
                 Mis Elementos ({resources.length})
               </h2>
               <button
                 onClick={openModal}
-                className="px-4 py-2 text-sm bg-pink-400/70 backdrop-blur-sm text-white rounded-lg hover:bg-pink-500/60  transition-all font-medium"
+                className="px-4 py-2 text-sm rounded-lg transition-all font-medium backdrop-blur-sm"
+                style={{
+                  backgroundColor: 'var(--button-bg)',
+                  color: 'var(--button-text)',
+                  border: '1px solid var(--border-primary)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--button-hover-bg)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--button-bg)';
+                }}
               >
                 Nuevo +
               </button>

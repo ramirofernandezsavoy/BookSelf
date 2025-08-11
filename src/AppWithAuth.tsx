@@ -1,12 +1,17 @@
 import { AuthProvider, useAuth } from './hooks/useAuth'
 import AuthForm from './components/AuthForm'
+import ThemeToggle from './components/ThemeToggle'
+import ThemeProvider from './components/ThemeProvider'
 import App from './App'
 
 function AppWithAuth() {
   return (
-    <AuthProvider>
-      <AuthGuard />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <ThemeToggle />
+        <AuthGuard />
+      </AuthProvider>
+    </ThemeProvider>
   )
 }
 
@@ -15,10 +20,15 @@ function AuthGuard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-violet-900 flex items-center justify-center">
+      <div 
+        className="min-h-screen flex items-center justify-center transition-colors duration-500"
+        style={{
+          background: `linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)`
+        }}
+      >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-400 mx-auto mb-4"></div>
-          <p className="text-white">Cargando...</p>
+          <p style={{ color: 'var(--text-primary)' }}>Cargando...</p>
         </div>
       </div>
     )

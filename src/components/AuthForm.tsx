@@ -30,22 +30,49 @@ export default function AuthForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-cyan-900/50 flex items-center justify-center p-4">
+    <div 
+      className="min-h-screen flex items-center justify-center p-4 transition-colors duration-500"
+      style={{ 
+        background: `linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)` 
+      }}
+    >
       <div className="max-w-md w-full">
-        <div className="bg-black/40 backdrop-blur-xl rounded-xl p-6 border border-cyan-400/25 shadow-xl">
+        <div 
+          className="backdrop-blur-xl rounded-xl p-6 shadow-xl transition-all duration-300"
+          style={{
+            backgroundColor: 'var(--bg-glass)',
+            border: '1px solid var(--border-primary)'
+          }}
+        >
          <div className="text-center mb-6">
-          <h1 className="text-3xl font-medium text-cyan-100 mb-2">Bookself</h1>
-          <p className="text-gray-400 text-sm">Tu gestor personal de links</p>
+          <h1 
+            className="text-3xl font-medium mb-2 transition-colors duration-300"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            Bookself
+          </h1>
+          <p 
+            className="text-sm transition-colors duration-300"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            Tu gestor personal de links
+          </p>
         </div>
-          <div className="flex gap-2 mb-4 bg-black/30 rounded-lg p-1">
+          <div 
+            className="flex gap-2 mb-4 rounded-lg p-1"
+            style={{ backgroundColor: 'var(--bg-glass)' }}
+          >
             <button
               type="button"
               onClick={() => setIsLogin(true)}
               className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
-                isLogin
-                  ? 'bg-cyan-600/60 text-white shadow-md border border-cyan-400/30'
-                  : 'text-gray-400 hover:text-cyan-200'
+                isLogin ? 'shadow-md' : ''
               }`}
+              style={{
+                backgroundColor: isLogin ? 'var(--button-hover-bg)' : 'transparent',
+                color: isLogin ? 'var(--button-text)' : 'var(--text-secondary)',
+                border: isLogin ? '1px solid var(--border-primary)' : 'none'
+              }}
             >
               Iniciar Sesión
             </button>
@@ -53,10 +80,13 @@ export default function AuthForm() {
               type="button"
               onClick={() => setIsLogin(false)}
               className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
-                !isLogin
-                  ? 'bg-cyan-600/60 text-white shadow-md border border-cyan-400/30'
-                  : 'text-gray-400 hover:text-cyan-200'
+                !isLogin ? 'shadow-md' : ''
               }`}
+              style={{
+                backgroundColor: !isLogin ? 'var(--button-hover-bg)' : 'transparent',
+                color: !isLogin ? 'var(--button-text)' : 'var(--text-secondary)',
+                border: !isLogin ? '1px solid var(--border-primary)' : 'none'
+              }}
             >
               Registrarse
             </button>
@@ -64,28 +94,60 @@ export default function AuthForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-white text-xs font-medium mb-1">
+              <label 
+                className="block text-xs font-medium mb-1 transition-colors duration-300"
+                style={{ color: 'var(--text-primary)' }}
+              >
                 Email
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 text-sm bg-black/20 backdrop-blur-sm border border-cyan-400/25 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400/50 focus:bg-black/30 focus:outline-none transition-all"
+                className="w-full p-3 text-sm backdrop-blur-sm rounded-lg focus:outline-none transition-all"
+                style={{
+                  backgroundColor: 'var(--bg-glass)',
+                  border: '1px solid var(--border-primary)',
+                  color: 'var(--text-primary)'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = 'var(--border-hover)';
+                  e.target.style.backgroundColor = 'var(--bg-glass-hover)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = 'var(--border-primary)';
+                  e.target.style.backgroundColor = 'var(--bg-glass)';
+                }}
                 placeholder="tu@email.com"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-white text-xs font-medium mb-1">
+              <label 
+                className="block text-xs font-medium mb-1 transition-colors duration-300"
+                style={{ color: 'var(--text-primary)' }}
+              >
                 Contraseña
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 text-sm bg-black/20 backdrop-blur-sm border border-cyan-400/25 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400/50 focus:bg-black/30 focus:outline-none transition-all"
+                className="w-full p-3 text-sm backdrop-blur-sm rounded-lg focus:outline-none transition-all"
+                style={{
+                  backgroundColor: 'var(--bg-glass)',
+                  border: '1px solid var(--border-primary)',
+                  color: 'var(--text-primary)'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = 'var(--border-hover)';
+                  e.target.style.backgroundColor = 'var(--bg-glass-hover)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = 'var(--border-primary)';
+                  e.target.style.backgroundColor = 'var(--bg-glass)';
+                }}
                 placeholder="••••••••"
                 required
                 minLength={6}
@@ -93,11 +155,18 @@ export default function AuthForm() {
             </div>
 
             {message && (
-              <div className={`p-3 rounded-lg text-sm backdrop-blur-sm border ${
-                message.includes('creada') || message.includes('exitoso')
-                  ? 'bg-cyan-600/20 border-cyan-400/30 text-cyan-200'
-                  : 'bg-rose-600/20 border-rose-400/25 text-rose-200'
-              }`}>
+              <div 
+                className={`p-3 rounded-lg text-sm backdrop-blur-sm border transition-colors duration-300 ${
+                  message.includes('creada') || message.includes('exitoso')
+                    ? 'border-green-400/30 text-green-600 dark:text-green-300'
+                    : 'border-rose-400/30 text-rose-600 dark:text-rose-300'
+                }`}
+                style={{
+                  backgroundColor: message.includes('creada') || message.includes('exitoso')
+                    ? 'rgba(34, 197, 94, 0.1)'
+                    : 'rgba(239, 68, 68, 0.1)'
+                }}
+              >
                 {message}
               </div>
             )}
@@ -105,7 +174,24 @@ export default function AuthForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-cyan-600/60 backdrop-blur-sm border border-cyan-400/30 text-white rounded-lg hover:bg-cyan-500/70 hover:border-cyan-400/45 transition-all disabled:opacity-50 font-medium text-sm"
+              className="w-full py-3 backdrop-blur-sm rounded-lg transition-all disabled:opacity-50 font-medium text-sm"
+              style={{
+                backgroundColor: 'var(--button-bg)',
+                border: '1px solid var(--border-primary)',
+                color: 'var(--button-text)'
+              }}
+              onMouseEnter={(e) => {
+                if (!loading) {
+                  e.currentTarget.style.backgroundColor = 'var(--button-hover-bg)';
+                  e.currentTarget.style.borderColor = 'var(--border-hover)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!loading) {
+                  e.currentTarget.style.backgroundColor = 'var(--button-bg)';
+                  e.currentTarget.style.borderColor = 'var(--border-primary)';
+                }
+              }}
             >
               {loading
                 ? 'Procesando...'

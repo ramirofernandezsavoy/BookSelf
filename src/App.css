@@ -1,5 +1,100 @@
 @import "tailwindcss";
 
+/* Variables CSS para tema dual */
+:root {
+  /* Colores para light mode (cyberpunk pastel sobre marfil) */
+  --bg-primary: #ece6cb; /* Marfil suave */
+  --bg-secondary: #c7c1a5; /* Marfil más oscuro */
+  --bg-glass: rgba(250, 249, 246, 0.479); /* Marfil translúcido */
+  --bg-glass-hover: rgba(250, 249, 246, 0.616); /* Marfil translúcido hover */
+  --text-primary: #2d1b4e; /* Púrpura oscuro suave */
+  --text-secondary: #6b4c93; /* Púrpura medio */
+  --border-primary: rgba(168, 85, 247, 0.25); /* Violeta pastel */
+  --border-hover: rgba(125, 77, 153, 0.568); /* Rosa pastel hover */
+  --button-bg: rgba(169, 85, 247, 0.219); /* Violeta muy suave */
+  --button-text: #7c3aed; /* Violeta vibrante pero suave */
+  --button-hover-bg: rgba(236, 72, 153, 0.12); /* Rosa muy suave hover */
+  --sphere-1: rgba(169, 85, 247, 0.342); /* Violeta pastel */
+  --sphere-2: rgba(59, 131, 246, 0.336); /* Azul pastel */
+  --sphere-3: rgba(236, 72, 154, 0.404); /* Rosa pastel */
+  
+  /* Colores de tags para light mode - más oscuros para mejor contraste */
+  --tag-cyan-bg: rgba(6, 182, 212, 0.15);
+  --tag-cyan-text: #0e7490;
+  --tag-cyan-border: rgba(6, 182, 212, 0.3);
+  
+  --tag-purple-bg: rgba(168, 85, 247, 0.15);
+  --tag-purple-text: #7c2d92;
+  --tag-purple-border: rgba(168, 85, 247, 0.3);
+  
+  --tag-teal-bg: rgba(20, 184, 166, 0.15);
+  --tag-teal-text: #115e59;
+  --tag-teal-border: rgba(20, 184, 166, 0.3);
+  
+  --tag-indigo-bg: rgba(99, 102, 241, 0.15);
+  --tag-indigo-text: #3730a3;
+  --tag-indigo-border: rgba(99, 102, 241, 0.3);
+  
+  --tag-violet-bg: rgba(139, 92, 246, 0.15);
+  --tag-violet-text: #6b21a8;
+  --tag-violet-border: rgba(139, 92, 246, 0.3);
+  
+  --tag-sky-bg: rgba(14, 165, 233, 0.15);
+  --tag-sky-text: #0c4a6e;
+  --tag-sky-border: rgba(14, 165, 233, 0.3);
+  
+  --tag-blue-bg: rgba(59, 130, 246, 0.15);
+  --tag-blue-text: #1e3a8a;
+  --tag-blue-border: rgba(59, 130, 246, 0.3);
+}
+
+.dark {
+  /* Colores para dark mode (cyberpunk original) */
+  --bg-primary: #0b111f;
+  --bg-secondary: #1e293b;
+  --bg-glass: rgba(0, 0, 0, 0.2);
+  --bg-glass-hover: rgba(0, 0, 0, 0.4);
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --border-primary: rgba(243, 183, 240, 0.2);
+  --border-hover: rgba(211, 130, 243, 0.4);
+  --button-bg: rgba(199, 118, 236, 0.342);
+  --button-text: #fcfcfc;
+  --button-hover-bg: rgba(227, 182, 248, 0.445);
+  --sphere-1: rgba(139, 92, 246, 0.6);
+  --sphere-2: rgba(59, 130, 246, 0.6);
+  --sphere-3: rgba(236, 72, 153, 0.6);
+  
+  /* Colores de tags para dark mode - más claros */
+  --tag-cyan-bg: rgba(6, 182, 212, 0.25);
+  --tag-cyan-text: #67e8f9;
+  --tag-cyan-border: rgba(6, 182, 212, 0.4);
+  
+  --tag-purple-bg: rgba(168, 85, 247, 0.25);
+  --tag-purple-text: #c4b5fd;
+  --tag-purple-border: rgba(168, 85, 247, 0.4);
+  
+  --tag-teal-bg: rgba(20, 184, 166, 0.25);
+  --tag-teal-text: #5eead4;
+  --tag-teal-border: rgba(20, 184, 166, 0.4);
+  
+  --tag-indigo-bg: rgba(99, 102, 241, 0.25);
+  --tag-indigo-text: #a5b4fc;
+  --tag-indigo-border: rgba(99, 102, 241, 0.4);
+  
+  --tag-violet-bg: rgba(139, 92, 246, 0.25);
+  --tag-violet-text: #c4b5fd;
+  --tag-violet-border: rgba(139, 92, 246, 0.4);
+  
+  --tag-sky-bg: rgba(14, 165, 233, 0.25);
+  --tag-sky-text: #7dd3fc;
+  --tag-sky-border: rgba(14, 165, 233, 0.4);
+  
+  --tag-blue-bg: rgba(59, 130, 246, 0.25);
+  --tag-blue-text: #93c5fd;
+  --tag-blue-border: rgba(59, 130, 246, 0.4);
+}
+
 /* Utilidades personalizadas */
 .line-clamp-2 {
   display: -webkit-box;
@@ -14,6 +109,84 @@
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+/* Estilos para placeholders adaptativos */
+input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+input:focus::placeholder {
+  opacity: 0.5;
+}
+
+/* Mejoras para el modo claro */
+:root {
+  /* Suavizar las sombras en modo claro */
+  --shadow-light: 0 4px 20px rgba(168, 85, 247, 0.08);
+  --shadow-hover-light: 0 8px 30px rgba(236, 72, 153, 0.12);
+}
+
+.dark {
+  /* Sombras más dramáticas en modo oscuro */
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-hover-light: 0 8px 30px rgba(168, 85, 247, 0.2);
+}
+
+/* Clases para tags adaptativas */
+.tag-cyan { 
+  background-color: var(--tag-cyan-bg); 
+  color: var(--tag-cyan-text); 
+  border: 1px solid var(--tag-cyan-border); 
+}
+.tag-purple { 
+  background-color: var(--tag-purple-bg); 
+  color: var(--tag-purple-text); 
+  border: 1px solid var(--tag-purple-border); 
+}
+.tag-teal { 
+  background-color: var(--tag-teal-bg); 
+  color: var(--tag-teal-text); 
+  border: 1px solid var(--tag-teal-border); 
+}
+.tag-indigo { 
+  background-color: var(--tag-indigo-bg); 
+  color: var(--tag-indigo-text); 
+  border: 1px solid var(--tag-indigo-border); 
+}
+.tag-cyan-alt { 
+  background-color: var(--tag-cyan-bg); 
+  color: var(--tag-cyan-text); 
+  border: 1px solid var(--tag-cyan-border); 
+  opacity: 0.8;
+}
+.tag-violet { 
+  background-color: var(--tag-violet-bg); 
+  color: var(--tag-violet-text); 
+  border: 1px solid var(--tag-violet-border); 
+}
+.tag-sky { 
+  background-color: var(--tag-sky-bg); 
+  color: var(--tag-sky-text); 
+  border: 1px solid var(--tag-sky-border); 
+}
+.tag-blue { 
+  background-color: var(--tag-blue-bg); 
+  color: var(--tag-blue-text); 
+  border: 1px solid var(--tag-blue-border); 
+}
+.tag-purple-alt { 
+  background-color: var(--tag-purple-bg); 
+  color: var(--tag-purple-text); 
+  border: 1px solid var(--tag-purple-border); 
+  opacity: 0.9;
+}
+.tag-teal-alt { 
+  background-color: var(--tag-teal-bg); 
+  color: var(--tag-teal-text); 
+  border: 1px solid var(--tag-teal-border); 
+  opacity: 0.8;
 }
 
 /* Animaciones para las esferas de fondo */

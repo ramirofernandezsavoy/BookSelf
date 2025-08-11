@@ -33,23 +33,41 @@ export default function Filters() {
   }
 
   return (
-    <section className="text-white max-w-7xl mx-auto px-4">
+    <section className="max-w-7xl mx-auto px-4">
       <div className="p-4 mb-6">
         <input 
           type="text" 
           value={localQuery}
           onChange={handleInputChange}
-          className="w-full py-2 px-3 rounded-lg bg-black/20 backdrop-blur-sm border border-cyan-400/20 text-sm text-white placeholder-gray-400 mb-3 focus:outline-none focus:border-cyan-400/40 focus:bg-black/30 transition-all" 
+          className="w-full py-2 px-3 rounded-lg backdrop-blur-sm text-sm mb-3 focus:outline-none transition-all"
+          style={{
+            backgroundColor: 'var(--bg-glass)',
+            border: '1px solid var(--border-primary)',
+            color: 'var(--text-primary)'
+          }}
           placeholder="Search titles and descriptions..."
+          onFocus={(e) => {
+            e.target.style.borderColor = 'var(--border-hover)';
+            e.target.style.backgroundColor = 'var(--bg-glass-hover)';
+          }}
+          onBlur={(e) => {
+            e.target.style.borderColor = 'var(--border-primary)';
+            e.target.style.backgroundColor = 'var(--bg-glass)';
+          }}
         />
         <div className="flex space-x-3 justify-start flex-wrap gap-y-3">
           <button 
             onClick={() => handleTagFilter(null)}
-            className={`px-2 py-1 rounded text-xs font-medium transition-opacity ${
+            className={`px-2 py-1 rounded text-xs font-medium transition-all ${
               selectedTag === null 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-blue-100 text-blue-600 hover:opacity-80'
+                ? 'ring-2 ring-blue-400 bg-blue-500 text-white' 
+                : 'hover:opacity-80'
             }`}
+            style={{
+              backgroundColor: selectedTag === null ? undefined : 'var(--button-bg)',
+              color: selectedTag === null ? undefined : 'var(--button-text)',
+              border: selectedTag === null ? undefined : '1px solid var(--border-primary)'
+            }}
           >
             All Resources
           </button>

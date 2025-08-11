@@ -61,12 +61,39 @@ export default function ResourceCard({ resource, onEdit }: ResourceCardProps) {
   }
 
   return (
-    <div className="bg-black/25 backdrop-blur-md rounded-lg p-3 border border-gray-400/25 hover:bg-black/35 hover:border-gray-400/40 hover:backdrop-blur-lg transition-all duration-300 h-full flex flex-col relative group shadow-md hover:shadow-lg">
+    <div 
+      className="backdrop-blur-md rounded-lg p-3 hover:backdrop-blur-lg transition-all duration-300 h-full flex flex-col relative group shadow-md hover:shadow-lg"
+      style={{
+        backgroundColor: 'var(--bg-glass)',
+        border: '1px solid var(--border-primary)'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = 'var(--bg-glass-hover)';
+        e.currentTarget.style.borderColor = 'var(--border-hover)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = 'var(--bg-glass)';
+        e.currentTarget.style.borderColor = 'var(--border-primary)';
+      }}
+    >
       {/* Botones de acción en la esquina superior derecha */}
       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
         <button
           onClick={handleEdit}
-          className="p-1 bg-black/25 backdrop-blur-sm hover:bg-cyan-500/20 border border-cyan-400/20 hover:border-cyan-400/40 text-white hover:text-cyan-200 rounded transition-all duration-200"
+          className="p-1 backdrop-blur-sm rounded transition-all duration-200"
+          style={{
+            backgroundColor: 'var(--button-bg)',
+            border: '1px solid var(--border-primary)',
+            color: 'var(--button-text)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--button-hover-bg)';
+            e.currentTarget.style.borderColor = 'var(--border-hover)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--button-bg)';
+            e.currentTarget.style.borderColor = 'var(--border-primary)';
+          }}
           title="Edit resource"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -75,7 +102,7 @@ export default function ResourceCard({ resource, onEdit }: ResourceCardProps) {
         </button>
         <button
           onClick={handleDelete}
-          className="p-1 bg-black/25 backdrop-blur-sm hover:bg-rose-500/20 border border-cyan-400/20 hover:border-rose-400/40 text-white hover:text-rose-200 rounded transition-all duration-200"
+          className="p-1 backdrop-blur-sm hover:bg-rose-500/20 border border-rose-400/40 hover:border-rose-400/60 text-rose-400 hover:text-rose-300 rounded transition-all duration-200"
           title="Delete resource"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -91,8 +118,16 @@ export default function ResourceCard({ resource, onEdit }: ResourceCardProps) {
         rel="noopener noreferrer"
         className="flex flex-col h-full cursor-pointer"
       >
-        <h3 className="font-medium mb-2 text-base pr-12">{resource.title}</h3>
-        <p className="text-xs text-gray-300 mb-2 flex-grow">
+        <h3 
+          className="font-medium mb-2 text-base pr-12 transition-colors duration-300"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          {resource.title}
+        </h3>
+        <p 
+          className="text-xs mb-2 flex-grow transition-colors duration-300"
+          style={{ color: 'var(--text-secondary)' }}
+        >
           {resource.description}
         </p>
         {processedTags.length > 0 && (
