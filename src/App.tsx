@@ -203,12 +203,16 @@ function App() {
         {/* Header de usuario autenticado */}
         <div className="p-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <h1 
-              className="text-4xl font-bold transition-colors duration-300"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              BookSelf
-            </h1>
+           <h1 
+             className="text-4xl font-bold transition-colors duration-300"
+             style={{ 
+               color: 'var(--text-primary)',
+               fontFamily: 'MuseoModerno, sans-serif',
+               fontWeight: '600'
+             }}
+           >
+             The Vault
+           </h1>
             <div className="flex flex-col gap-2">
               <button
                 onClick={handleSignOut}

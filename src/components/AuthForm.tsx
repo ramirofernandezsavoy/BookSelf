@@ -47,9 +47,13 @@ export default function AuthForm() {
          <div className="text-center mb-6">
           <h1 
             className="text-3xl font-medium mb-2 transition-colors duration-300"
-            style={{ color: 'var(--text-primary)' }}
+            style={{ 
+              color: 'var(--text-primary)',
+              fontFamily: 'MuseoModerno, sans-serif',
+              fontWeight: '600'
+            }}
           >
-            Bookself
+            The Vault
           </h1>
           <p 
             className="text-sm transition-colors duration-300"

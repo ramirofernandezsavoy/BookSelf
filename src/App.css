@@ -1,51 +1,62 @@
 @import "tailwindcss";
 
+/* Fuente por defecto para el body */
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Fuente específica para títulos */
+h1 {
+  font-family: 'MuseoModerno', sans-serif !important;
+  font-weight: 600 !important;
+}
+
 /* Variables CSS para tema dual */
 :root {
-  /* Colores para light mode (cyberpunk pastel sobre marfil) */
-  --bg-primary: #ece6cb; /* Marfil suave */
-  --bg-secondary: #c7c1a5; /* Marfil más oscuro */
-  --bg-glass: rgba(250, 249, 246, 0.479); /* Marfil translúcido */
-  --bg-glass-hover: rgba(250, 249, 246, 0.616); /* Marfil translúcido hover */
-  --text-primary: #2d1b4e; /* Púrpura oscuro suave */
-  --text-secondary: #6b4c93; /* Púrpura medio */
-  --border-primary: rgba(168, 85, 247, 0.25); /* Violeta pastel */
-  --border-hover: rgba(125, 77, 153, 0.568); /* Rosa pastel hover */
-  --button-bg: rgba(169, 85, 247, 0.219); /* Violeta muy suave */
-  --button-text: #7c3aed; /* Violeta vibrante pero suave */
-  --button-hover-bg: rgba(236, 72, 153, 0.12); /* Rosa muy suave hover */
-  --sphere-1: rgba(169, 85, 247, 0.342); /* Violeta pastel */
-  --sphere-2: rgba(59, 131, 246, 0.336); /* Azul pastel */
-  --sphere-3: rgba(236, 72, 154, 0.404); /* Rosa pastel */
+  /* Colores para light mode (suave y cremoso, sin glassmorphism) */
+  --bg-primary: #f8f6f0; /* Crema muy suave */
+  --bg-secondary: #f0ede5; /* Crema ligeramente más oscuro */
+  --bg-glass: #faf9f6; /* Fondo sólido crema */
+  --bg-glass-hover: #f5f2eb; /* Hover suave */
+  --text-primary: #4a4a4a; /* Gris suave en lugar de púrpura */
+  --text-secondary: #6b6b6b; /* Gris medio */
+  --border-primary: #e8e5de; /* Borde muy sutil */
+  --border-hover: #ddd8d0; /* Hover sutil */
+  --button-bg: #f0ede5; /* Fondo de botón suave */
+  --button-text: #5a5a5a; /* Texto de botón suave */
+  --button-hover-bg: #ebe7df; /* Hover de botón */
+  --sphere-1: rgba(220, 215, 205, 0.3); /* Esferas muy sutiles */
+  --sphere-2: rgba(210, 205, 195, 0.3);
+  --sphere-3: rgba(200, 195, 185, 0.3);
   
-  /* Colores de tags para light mode - más oscuros para mejor contraste */
-  --tag-cyan-bg: rgba(6, 182, 212, 0.15);
-  --tag-cyan-text: #0e7490;
-  --tag-cyan-border: rgba(6, 182, 212, 0.3);
+  /* Tags más vibrantes para light mode - manteniendo suavidad pero con más color */
+  --tag-cyan-bg: #e6f7fa;
+  --tag-cyan-text: #0891b2;
+  --tag-cyan-border: #67e8f9;
   
-  --tag-purple-bg: rgba(168, 85, 247, 0.15);
-  --tag-purple-text: #7c2d92;
-  --tag-purple-border: rgba(168, 85, 247, 0.3);
+  --tag-purple-bg: #f3e8ff;
+  --tag-purple-text: #7c3aed;
+  --tag-purple-border: #a855f7;
   
-  --tag-teal-bg: rgba(20, 184, 166, 0.15);
-  --tag-teal-text: #115e59;
-  --tag-teal-border: rgba(20, 184, 166, 0.3);
+  --tag-teal-bg: #e6fffa;
+  --tag-teal-text: #0f766e;
+  --tag-teal-border: #2dd4bf;
   
-  --tag-indigo-bg: rgba(99, 102, 241, 0.15);
-  --tag-indigo-text: #3730a3;
-  --tag-indigo-border: rgba(99, 102, 241, 0.3);
+  --tag-indigo-bg: #eef2ff;
+  --tag-indigo-text: #4f46e5;
+  --tag-indigo-border: #6366f1;
   
-  --tag-violet-bg: rgba(139, 92, 246, 0.15);
-  --tag-violet-text: #6b21a8;
-  --tag-violet-border: rgba(139, 92, 246, 0.3);
+  --tag-violet-bg: #f5f3ff;
+  --tag-violet-text: #8b5cf6;
+  --tag-violet-border: #a78bfa;
   
-  --tag-sky-bg: rgba(14, 165, 233, 0.15);
-  --tag-sky-text: #0c4a6e;
-  --tag-sky-border: rgba(14, 165, 233, 0.3);
+  --tag-sky-bg: #f0f9ff;
+  --tag-sky-text: #0284c7;
+  --tag-sky-border: #38bdf8;
   
-  --tag-blue-bg: rgba(59, 130, 246, 0.15);
-  --tag-blue-text: #1e3a8a;
-  --tag-blue-border: rgba(59, 130, 246, 0.3);
+  --tag-blue-bg: #eff6ff;
+  --tag-blue-text: #2563eb;
+  --tag-blue-border: #3b82f6;
 }
 
 .dark {
