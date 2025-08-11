@@ -1,13 +1,22 @@
-import { supabase } from '../utils/supabase'
+import { supabase } from '../lib/supabase'
 import type { Resource } from '../stores/useStore'
 
 // Obtener todos los recursos
 export const getResources = async (): Promise<Resource[]> => {
   console.log('🗄️ Llamando a Supabase para obtener recursos...')
   
+  // Obtener el usuario actual
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) {
+    console.log('❌ Usuario no autenticado')
+    return []
+  }
+  
   const { data, error } = await supabase
-    .from('resources')
+    .from('links')
     .select('*')
+    .eq('user_id', user.id)
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -30,9 +39,21 @@ export const createResource = async (resource: {
 }): Promise<Resource> => {
   console.log('➕ Creando nuevo recurso:', resource)
   
+  // Obtener el usuario actual
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) {
+    throw new Error('Usuario no autenticado')
+  }
+  
+  const resourceWithUser = {
+    ...resource,
+    user_id: user.id
+  }
+  
   const { data, error } = await supabase
-    .from('resources')
-    .insert([resource])
+    .from('links')
+    .insert([resourceWithUser])
     .select()
     .single()
 
@@ -55,7 +76,7 @@ export const updateResource = async (id: number, resource: {
   console.log('✏️ Actualizando recurso:', id, resource)
   
   const { data, error } = await supabase
-    .from('resources')
+    .from('links')
     .update(resource)
     .eq('id', id)
     .select()
@@ -75,7 +96,7 @@ export const deleteResource = async (id: number): Promise<void> => {
   console.log('🗑️ Eliminando recurso:', id)
   
   const { error } = await supabase
-    .from('resources')
+    .from('links')
     .delete()
     .eq('id', id)
 
@@ -90,7 +111,7 @@ export const deleteResource = async (id: number): Promise<void> => {
 // Buscar recursos por texto
 export const searchResources = async (query: string): Promise<Resource[]> => {
   const { data, error } = await supabase
-    .from('resources')
+    .from('links')
     .select('*')
     .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
     .order('created_at', { ascending: false })
@@ -106,7 +127,7 @@ export const searchResources = async (query: string): Promise<Resource[]> => {
 // Filtrar recursos por tags
 export const filterResourcesByTags = async (tags: string[]): Promise<Resource[]> => {
   const { data, error } = await supabase
-    .from('resources')
+    .from('links')
     .select('*')
     .overlaps('tags', tags)
     .order('created_at', { ascending: false })
