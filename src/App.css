@@ -15,3 +15,40 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+
+/* Animaciones para las esferas de fondo */
+@keyframes float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(50px, -50px) rotate(120deg) scale(1.1);
+  }
+  66% {
+    transform: translate(-40px, 40px) rotate(240deg) scale(0.9);
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-60px, -40px) rotate(180deg) scale(1.2);
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(40px, -60px) rotate(90deg) scale(1.1);
+  }
+  50% {
+    transform: translate(-50px, -40px) rotate(180deg) scale(0.8);
+  }
+  75% {
+    transform: translate(20px, 50px) rotate(270deg) scale(1.3);
+  }
+}

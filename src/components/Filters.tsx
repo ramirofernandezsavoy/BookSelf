@@ -40,14 +40,14 @@ export default function Filters() {
   }
 
   return (
-    <section className="text-white p-4 max-w-7xl mx-auto">
-      <div className="bg-violet-950/20 p-6 border-2 border-white rounded-2xl">        
+    <section className="text-white max-w-7xl mx-auto">
+      <div className="p-4 mb-6">
         <input 
           type="text" 
           value={localQuery}
           onChange={handleInputChange}
-          className="w-full py-3 px-4 rounded-lg bg-transparent border border-white/30 text-white placeholder-gray-400 mb-4 focus:border-blue-400 focus:outline-none" 
-          placeholder="Search titles and descriptions..."
+          className="w-full py-2 px-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/20 text-sm text-white placeholder-gray-400 mb-3 focus:outline-none focus:border-white/40 focus:bg-black/30 transition-all" 
+          placeholder="Buscar títulos y descripciones..."
         />
         <div className="flex space-x-3 justify-start flex-wrap gap-y-3">
           <button 
@@ -58,7 +58,7 @@ export default function Filters() {
                 : 'bg-blue-100 text-blue-600 hover:opacity-80'
             }`}
           >
-            All Resources
+            Todos los Elementos
           </button>
           {availableTags.map((tag) => (
             <button 

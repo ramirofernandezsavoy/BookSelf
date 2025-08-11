@@ -1,15 +1,15 @@
-// Colores para los tags
+// Colores ciberpunk coherentes con base cyan y variaciones sutiles
 export const tagColors = [
-  'bg-blue-100 text-blue-600',
-  'bg-purple-100 text-purple-600', 
-  'bg-green-100 text-green-600',
-  'bg-yellow-100 text-yellow-600',
-  'bg-pink-100 text-pink-600',
-  'bg-indigo-100 text-indigo-600',
-  'bg-red-100 text-red-600',
-  'bg-cyan-100 text-cyan-600',
-  'bg-orange-100 text-orange-600',
-  'bg-emerald-100 text-emerald-600'
+  'bg-cyan-500/30 backdrop-blur-sm text-cyan-200 border border-cyan-400/25',
+  'bg-purple-500/25 backdrop-blur-sm text-purple-200 border border-purple-400/25', 
+  'bg-teal-500/25 backdrop-blur-sm text-teal-200 border border-teal-400/25',
+  'bg-indigo-500/25 backdrop-blur-sm text-indigo-200 border border-indigo-400/25',
+  'bg-cyan-600/25 backdrop-blur-sm text-cyan-200 border border-cyan-500/25',
+  'bg-violet-500/25 backdrop-blur-sm text-violet-200 border border-violet-400/25',
+  'bg-sky-500/25 backdrop-blur-sm text-sky-200 border border-sky-400/25',
+  'bg-blue-500/25 backdrop-blur-sm text-blue-200 border border-blue-400/25',
+  'bg-purple-600/25 backdrop-blur-sm text-purple-200 border border-purple-500/25',
+  'bg-teal-600/25 backdrop-blur-sm text-teal-200 border border-teal-500/25'
 ]
 
 // Función para generar un hash simple del texto
